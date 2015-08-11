@@ -36,7 +36,7 @@ namespace FSDM.Infrastructure.Storage.EntityFramework
             var eventData = events.Select(CreateEventData).ToList();
             var currentVersion = expectedVersion;
 
-            if (expectedVersion < 0)
+            if (expectedVersion < 1)
             {
                 foreach (var @event in eventData)
                 {
@@ -50,7 +50,6 @@ namespace FSDM.Infrastructure.Storage.EntityFramework
             else
             {
                 var existingEvents = _eventStore.Events.Where(x => x.AggregateId == aggregate.Id);
-                var currentVersion = existingEvents.Count() - 1;
                 if (currentVersion != expectedVersion)
                 {
                     throw new WrongExpectedVersionException("Expected version " + expectedVersion +

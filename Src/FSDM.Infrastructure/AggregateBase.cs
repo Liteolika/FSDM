@@ -24,7 +24,7 @@ namespace FSDM.Infrastructure
 
         private List<IDomainEvent> _uncommitedEvents = new List<IDomainEvent>();
         private Dictionary<Type, Action<IDomainEvent>> _routes = new Dictionary<Type, Action<IDomainEvent>>();
-        private int _version = -1;
+        private int _version = 0;
 
         public void RaiseEvent(IDomainEvent @event)
         {
